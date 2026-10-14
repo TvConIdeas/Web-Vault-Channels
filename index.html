@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Vault Channels | TvConIdeas</title>
+    
+    <!-- ! <=====( ESTILOS E ICONOS )=====> -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/IconPage.png" type="image/x-icon">
+    
+    <!-- Tipografías similares al estilo Nintendo Wii -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ! <=====( MÚSICA DE FONDO )=====> -->
+    <audio id="bgMusic" src="assets/Background-theme.mp3" loop></audio>
+
+    <!-- ! <=====( BARRA SUPERIOR WII )=====> -->
+    <header class="wii-top-bar">
+        <div class="wii-top-left">
+            <span class="wii-clock" id="wiiClock">00:00</span>
+            
+            <div class="wii-search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Buscar canal...">
+            </div>
+            
+            <div class="wii-dropdown-box">
+                <select id="genreSelect">
+                    <option value="all" id="opt-all">Todos los géneros</option>
+                    <option value="action" id="opt-action">Acción</option>
+                    <option value="sports" id="opt-sports">Deportes</option>
+                    <option value="retro" id="opt-retro">Retro</option>
+                    <option value="multiplayer" id="opt-multiplayer">Multijugador</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="wii-system-title">Web Vault Channels</div>
+
+        <div class="wii-top-right">
+            <!-- Control de Volumen Desplegable por Click -->
+            <div class="wii-volume-container">
+                <button class="wii-audio-btn" id="toggleAudioBtn" title="Música On/Off">
+                    <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
+                </button>
+                <div class="wii-volume-popover">
+                    <i class="fa-solid fa-volume-low"></i>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5">
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
+            </div>
+
+            <!-- Selector de Idioma -->
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="es">ES</button>
+                <span>/</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ! <=====( CONTENEDOR PRINCIPAL )=====> -->
+    <main class="wii-menu-container">
+        <button class="wii-nav-btn prev" id="prevPageBtn" title="Página anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="wii-grid" id="gamesGrid">
+            <!-- Bloques inyectados por JS -->
+        </div>
+
+        <button class="wii-nav-btn next" id="nextPageBtn" title="Página siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </main>
+
+    <!-- ! <=====( BARRA INFERIOR )=====> -->
+    <footer class="wii-bottom-bar">
+        <div class="wii-bottom-spacer"></div>
+
+        <div class="wii-pagination-dots" id="paginationDots"></div>
+
+        <div class="wii-credits">
+            By TvConIdeas
+        </div>
+    </footer>
+
+    <!-- ! <=====( VENTANA MODAL )=====> -->
+    <div class="modal-overlay" id="gameModal" role="dialog">
+        <div class="wii-modal-card" id="modalCardZoom">
+            <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            <div class="modal-content-grid" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

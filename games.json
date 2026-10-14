@@ -1,0 +1,142 @@
+[
+    {
+        "id": "bo1-zombies",
+        "title": "Call of Duty: Black Ops — Zombies",
+        "category": "action",
+        "creator": "vel.gg",
+        "image": "assets/bo1-zombies.jpg",
+        "es": { "description": "El clásico modo zombies adaptado para navegador con rendimiento fluido en WebGL.", "genre": "Acción" },
+        "en": { "description": "The classic zombies mode adapted for browsers with smooth WebGL performance.", "genre": "Action" },
+        "url": "https://vel.gg/bo1z"
+    },
+    {
+        "id": "modern-warfare-2",
+        "title": "Call of Duty: Modern Warfare 2",
+        "category": "action",
+        "creator": "ovz-game-production",
+        "image": "assets/modern-warfare-2.jpg",
+        "es": { "description": "Explorador de mapas y motor táctico 3D basado en MW2 original.", "genre": "Acción" },
+        "en": { "description": "Map explorer and 3D tactical engine based on the original MW2.", "genre": "Action" },
+        "url": "https://ovz-game-production.up.railway.app"
+    },
+    {
+        "id": "skate-3",
+        "title": "Skate 3",
+        "category": "sports",
+        "creator": "aaddpp.lol",
+        "image": "assets/skate-3.jpg",
+        "es": { "description": "Física de patineta y entornos urbanos llevados al entorno web.", "genre": "Deportes" },
+        "en": { "description": "Skateboard physics and urban environments brought to the web.", "genre": "Sports" },
+        "url": "https://skate.aaddpp.lol"
+    },
+    {
+        "id": "cs-surf",
+        "title": "Counter-Strike: Surf",
+        "category": "multiplayer",
+        "creator": "surfd.net",
+        "image": "assets/cs-surf.jpg",
+        "es": { "description": "Los icónicos mapas de deslizamiento (surf) multijugador de Counter-Strike.", "genre": "Multijugador" },
+        "en": { "description": "The iconic multiplayer surfing maps from Counter-Strike.", "genre": "Multiplayer" },
+        "url": "https://surfd.net"
+    },
+    {
+        "id": "pes-6",
+        "title": "Pro Evolution Soccer 6",
+        "category": "sports",
+        "creator": "optijuegos.net",
+        "image": "assets/pes-6.jpg",
+        "es": { "description": "El legendario simulador de fútbol de PSP corriendo íntegramente en WebAssembly.", "genre": "Deportes" },
+        "en": { "description": "The legendary PSP football simulator running entirely in WebAssembly.", "genre": "Sports" },
+        "url": "https://pes6.optijuegos.net"
+    },
+    {
+        "id": "simpsons-hit-and-run",
+        "title": "The Simpsons: Hit & Run",
+        "category": "retro",
+        "creator": "cjoseph.workers.dev",
+        "image": "assets/simpsons-hit-and-run.jpg",
+        "es": { "description": "El clásico juego de mundo abierto de Springfield compilado a la web.", "genre": "Retro" },
+        "en": { "description": "The classic open-world Springfield game compiled for the web.", "genre": "Retro" },
+        "url": "https://shar-wasm.cjoseph.workers.dev/?skipmovie"
+    },
+    {
+        "id": "quake-1",
+        "title": "Quake",
+        "category": "retro",
+        "creator": "Pieter",
+        "image": "assets/quake-1.jpg",
+        "es": { "description": "El pionero de los mundos 3D poligonales en formato web.", "genre": "Retro" },
+        "en": { "description": "The pioneer of polygonal 3D worlds in web format.", "genre": "Retro" },
+        "url": "https://q1.pieter.com"
+    },
+    {
+        "id": "quake-2",
+        "title": "Quake II",
+        "category": "retro",
+        "creator": "Pieter",
+        "image": "assets/quake-2.jpg",
+        "es": { "description": "Gráficos avanzados de la época y acción frenética contra los Strogg.", "genre": "Retro" },
+        "en": { "description": "Advanced graphics of the era and frantic action against the Strogg.", "genre": "Retro" },
+        "url": "https://q2.pieter.com"
+    },
+    {
+        "id": "quake-3",
+        "title": "Quake III Arena",
+        "category": "multiplayer",
+        "creator": "Pieter / QuakeJS",
+        "image": "assets/quake-3.jpg",
+        "es": { "description": "Combates multijugador de alta velocidad en arenas cerradas.", "genre": "Multijugador" },
+        "en": { "description": "High-speed multiplayer combat in closed arenas.", "genre": "Multiplayer" },
+        "url": "https://q3.pieter.com"
+    },
+    {
+        "id": "rtcw",
+        "title": "Return to Castle Wolfenstein",
+        "category": "retro",
+        "creator": "Pieter",
+        "image": "assets/rtcw.jpg",
+        "es": { "description": "Infiltración y enfrentamientos oscuros en el castillo Wolfenstein.", "genre": "Retro" },
+        "en": { "description": "Infiltration and dark encounters in Wolfenstein Castle.", "genre": "Retro" },
+        "url": "https://rtcw.pieter.com"
+    },
+    {
+        "id": "unreal-tournament",
+        "title": "Unreal Tournament",
+        "category": "multiplayer",
+        "creator": "Pieter",
+        "image": "assets/unreal-tournament.jpg",
+        "es": { "description": "Acción multijugador legendaria con armas futuristas y modos de juego clásicos.", "genre": "Multijugador" },
+        "en": { "description": "Legendary multiplayer action with futuristic weapons and classic modes.", "genre": "Multiplayer" },
+        "url": "https://ut.pieter.com"
+    },
+    {
+        "id": "half-life",
+        "title": "Half-Life",
+        "category": "action",
+        "creator": "pixelsuft",
+        "image": "assets/half-life.jpg",
+        "es": { "description": "El incidente de Black Mesa directo en tu navegador con motor Xash3D.", "genre": "Acción" },
+        "en": { "description": "The Black Mesa incident straight to your browser using the Xash3D engine.", "genre": "Action" },
+        "url": "https://pixelsuft.github.io/hl/"
+    },
+    {
+        "id": "half-life-cs",
+        "title": "Half-Life / Counter-Strike 1.6",
+        "category": "action",
+        "creator": "x8bitrain",
+        "image": "assets/half-life-cs.jpg",
+        "es": { "description": "Plataforma multi-motor webXash para clásicos de Valve.", "genre": "Acción" },
+        "en": { "description": "webXash multi-engine platform for Valve classics.", "genre": "Action" },
+        "url": "https://x8bitrain.github.io/webXash/"
+    },
+    {
+        "id": "diablo",
+        "title": "Diablo",
+        "category": "retro",
+        "creator": "johnimril",
+        "image": "assets/diablo.jpg",
+        "es": { "description": "Mazmorras oscuras y rol de acción clásico adaptado al navegador.", "genre": "Retro" },
+        "en": { "description": "Dark dungeons and classic action RPG adapted for the browser.", "genre": "Retro" },
+        "url": "https://johnimril.github.io/diablo_web/"
+    }
+]
