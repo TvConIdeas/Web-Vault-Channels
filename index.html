@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Web Vault Channels | TvConIdeas</title>
     
     <!-- ! <=====( ESTILOS E ICONOS )=====> -->
@@ -25,12 +25,19 @@
         <div class="wii-top-left">
             <span class="wii-clock" id="wiiClock">00:00</span>
             
-            <div class="wii-search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- Buscador expandible en móviles -->
+            <div class="wii-search-box" id="searchBox">
+                <button class="wii-icon-trigger" id="searchToggleBtn" title="Buscar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
                 <input type="text" id="searchInput" placeholder="Buscar canal...">
             </div>
             
-            <div class="wii-dropdown-box">
+            <!-- Selector de género expandible en móviles -->
+            <div class="wii-dropdown-box" id="dropdownBox">
+                <button class="wii-icon-trigger" id="genreToggleBtn" title="Género">
+                    <i class="fa-solid fa-filter"></i>
+                </button>
                 <select id="genreSelect">
                     <option value="all" id="opt-all">Todos los géneros</option>
                     <option value="action" id="opt-action">Acción</option>
@@ -41,10 +48,16 @@
             </div>
         </div>
 
+        <!-- Título central -->
         <div class="wii-system-title">Web Vault Channels</div>
 
         <div class="wii-top-right">
-            <!-- Control de Volumen Desplegable por Click -->
+            <!-- Botón de Modo Oscuro -->
+            <button class="wii-theme-btn" id="toggleThemeBtn" title="Cambiar modo oscuro/claro">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+
+            <!-- Control de Volumen Desplegable por Clic -->
             <div class="wii-volume-container">
                 <button class="wii-audio-btn" id="toggleAudioBtn" title="Música On/Off">
                     <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
@@ -65,14 +78,16 @@
         </div>
     </header>
 
-    <!-- ! <=====( CONTENEDOR PRINCIPAL )=====> -->
-    <main class="wii-menu-container">
+    <!-- ! <=====( CONTENEDOR PRINCIPAL CON GESTOS Y TRANSICIÓN )=====> -->
+    <main class="wii-menu-container" id="menuContainer">
         <button class="wii-nav-btn prev" id="prevPageBtn" title="Página anterior">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
 
-        <div class="wii-grid" id="gamesGrid">
-            <!-- Bloques inyectados por JS -->
+        <div class="wii-grid-wrapper">
+            <div class="wii-grid" id="gamesGrid">
+                <!-- Bloques inyectados por JS -->
+            </div>
         </div>
 
         <button class="wii-nav-btn next" id="nextPageBtn" title="Página siguiente">

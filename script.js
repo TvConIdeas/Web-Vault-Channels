@@ -2,15 +2,15 @@ let gamesData = [];
 let filteredGames = [];
 let currentLang = 'es';
 let currentPage = 0;
-const itemsPerPage = 12;
+let itemsPerPage = 12;
 
 const translations = {
     es: {
-        searchPlaceholder: "Buscar canal...",
+        searchPlaceholder: "Buscar...",
         creatorLabel: "Creador",
         genreLabel: "Género",
         startChannel: "Iniciar Canal",
-        optAll: "Todos los géneros",
+        optAll: "Todos",
         optAction: "Acción",
         optSports: "Deportes",
         optRetro: "Retro",
@@ -18,11 +18,11 @@ const translations = {
         noResults: "No se encontraron canales."
     },
     en: {
-        searchPlaceholder: "Search channel...",
+        searchPlaceholder: "Search...",
         creatorLabel: "Creator",
         genreLabel: "Genre",
         startChannel: "Start Channel",
-        optAll: "All genres",
+        optAll: "All",
         optAction: "Action",
         optSports: "Sports",
         optRetro: "Retro",
@@ -44,7 +44,17 @@ const modalBody = document.getElementById('modalBody');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const wiiClock = document.getElementById('wiiClock');
 
-// Control de Música y Volumen por Clic
+// Elementos expandibles en móviles
+const searchBox = document.getElementById('searchBox');
+const searchToggleBtn = document.getElementById('searchToggleBtn');
+const dropdownBox = document.getElementById('dropdownBox');
+const genreToggleBtn = document.getElementById('genreToggleBtn');
+
+// Modo Oscuro / Claro
+const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+const themeIcon = document.getElementById('themeIcon');
+
+// Control de Audio
 const bgMusic = document.getElementById('bgMusic');
 const toggleAudioBtn = document.getElementById('toggleAudioBtn');
 const audioIcon = document.getElementById('audioIcon');
@@ -54,6 +64,49 @@ let isMusicPlaying = false;
 
 bgMusic.volume = 0.5;
 
+// Gestionar Tema Oscuro / Claro con persistencia
+if (localStorage.getItem('wii_theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeIcon.className = 'fa-solid fa-sun';
+}
+
+toggleThemeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+        themeIcon.className = 'fa-solid fa-sun';
+        localStorage.setItem('wii_theme', 'dark');
+    } else {
+        themeIcon.className = 'fa-solid fa-moon';
+        localStorage.setItem('wii_theme', 'light');
+    }
+});
+
+// Configurar items por página según el tamaño de la pantalla
+function updateItemsPerPage() {
+    if (window.innerWidth <= 680) {
+        itemsPerPage = 6;
+    } else {
+        itemsPerPage = 12;
+    }
+}
+window.addEventListener('resize', () => {
+    const prevItems = itemsPerPage;
+    updateItemsPerPage();
+    if (prevItems !== itemsPerPage) {
+        renderGrid();
+    }
+});
+updateItemsPerPage();
+
+// Reloj
+function updateClock() {
+    const now = new Date();
+    wiiClock.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Control de Audio
 toggleAudioBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     volumeContainer.classList.toggle('active');
@@ -96,14 +149,28 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Reloj
-function updateClock() {
-    const now = new Date();
-    wiiClock.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-}
-setInterval(updateClock, 1000);
-updateClock();
+// Botones expandibles en celular
+searchToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchBox.classList.toggle('expanded');
+    dropdownBox.classList.remove('expanded');
+    if (searchBox.classList.contains('expanded')) {
+        searchInput.focus();
+    }
+});
 
+genreToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownBox.classList.toggle('expanded');
+    searchBox.classList.remove('expanded');
+});
+
+document.addEventListener('click', (e) => {
+    if (!searchBox.contains(e.target)) searchBox.classList.remove('expanded');
+    if (!dropdownBox.contains(e.target)) dropdownBox.classList.remove('expanded');
+});
+
+// Carga de datos
 document.addEventListener('DOMContentLoaded', () => {
     fetch('games.json')
         .then(res => res.json())
@@ -115,7 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error("Error al cargar games.json:", err));
 });
 
-function renderGrid() {
+// Renderizado con Animaciones
+function renderGrid(direction = '') {
+    if (direction) {
+        gamesGrid.className = 'wii-grid ' + (direction === 'next' ? 'slide-left' : 'slide-right');
+        setTimeout(() => {
+            updateGridContent();
+            gamesGrid.className = 'wii-grid ' + (direction === 'next' ? 'slide-in-right' : 'slide-in-left');
+        }, 200);
+    } else {
+        updateGridContent();
+    }
+}
+
+function updateGridContent() {
     gamesGrid.innerHTML = '';
     paginationDots.innerHTML = '';
 
@@ -129,7 +209,7 @@ function renderGrid() {
     const paginatedGames = filteredGames.slice(start, start + itemsPerPage);
 
     if (paginatedGames.length === 0) {
-        gamesGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--wii-text-muted); font-size: 1.2rem; padding: 4rem;">${translations[currentLang].noResults}</p>`;
+        gamesGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--wii-text-muted); font-size: 1.1rem; padding: 4rem;">${translations[currentLang].noResults}</p>`;
         return;
     }
 
@@ -137,11 +217,11 @@ function renderGrid() {
         const channel = document.createElement('div');
         channel.classList.add('wii-channel');
         
-        const imgSrc = game.image ? game.image : 'assets/Error-Img.jpg';
+        const imgSrc = game.image ? game.image : 'assets/Error-Img.svg';
         
         channel.innerHTML = `
             <div class="wii-channel-img-container">
-                <img src="${imgSrc}" alt="${game.title}" class="wii-channel-img" onerror="this.src='assets/Error-Img.jpg'">
+                <img src="${imgSrc}" alt="${game.title}" class="wii-channel-img" onerror="this.src='assets/Error-Img.svg'">
             </div>
             <div class="wii-channel-title-bar">
                 <h3>${game.title}</h3>
@@ -157,32 +237,72 @@ function renderGrid() {
         dot.classList.add('dot');
         if (i === currentPage) dot.classList.add('active');
         dot.addEventListener('click', () => {
+            const dir = i > currentPage ? 'next' : 'prev';
             currentPage = i;
-            renderGrid();
+            renderGrid(dir);
         });
         paginationDots.appendChild(dot);
     }
 }
 
+// Navegación con Botones
 prevPageBtn.addEventListener('click', () => {
-    if (currentPage > 0) { currentPage--; renderGrid(); }
+    if (currentPage > 0) {
+        currentPage--;
+        renderGrid('prev');
+    }
 });
 
 nextPageBtn.addEventListener('click', () => {
     const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
-    if (currentPage < totalPages - 1) { currentPage++; renderGrid(); }
+    if (currentPage < totalPages - 1) {
+        currentPage++;
+        renderGrid('next');
+    }
 });
 
+// Soporte para Gestos Táctiles (Swipe Gesture)
+let touchStartX = 0;
+let touchEndX = 0;
+const menuContainer = document.getElementById('menuContainer');
+
+menuContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+menuContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
+
+    if (touchStartX - touchEndX > swipeThreshold) {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            renderGrid('next');
+        }
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+        if (currentPage > 0) {
+            currentPage--;
+            renderGrid('prev');
+        }
+    }
+}
+
+// Ventana Modal
 function openWiiModal(game) {
     const langData = game[currentLang] || game.es;
-    const imgSrc = game.image ? game.image : 'assets/Error-Img.jpg';
+    const imgSrc = game.image ? game.image : 'assets/Error-Img.svg';
 
     modalBody.innerHTML = `
-        <img src="${imgSrc}" alt="${game.title}" class="modal-banner-img" onerror="this.src='assets/Error-Img.jpg'">
+        <img src="${imgSrc}" alt="${game.title}" class="modal-banner-img" onerror="this.src='assets/Error-Img.svg'">
         <h2>${game.title}</h2>
-        <p class="meta" style="font-size:0.95rem;">${translations[currentLang].creatorLabel}: <strong>${game.creator}</strong></p>
-        <p class="meta" style="font-size:0.95rem;">${translations[currentLang].genreLabel}: <strong style="text-transform: uppercase;">${langData.genre}</strong></p>
-        <p class="desc" style="font-size:0.95rem; background:#f4f4f4; padding:0.8rem; border-radius:10px; border:1px solid #ddd;">${langData.description}</p>
+        <p class="meta" style="font-size:0.9rem;">${translations[currentLang].creatorLabel}: <strong>${game.creator}</strong></p>
+        <p class="meta" style="font-size:0.9rem;">${translations[currentLang].genreLabel}: <strong style="text-transform: uppercase;">${langData.genre}</strong></p>
+        <p class="desc" style="font-size:0.88rem; background:var(--wii-modal-desc); padding:0.7rem; border-radius:10px; border:1px solid var(--wii-border);">${langData.description}</p>
         <div>
             <a href="${game.url}" target="_blank" rel="noopener" class="start-channel-btn">
                 <i class="fa-solid fa-play"></i> ${translations[currentLang].startChannel}
@@ -195,6 +315,7 @@ function openWiiModal(game) {
 closeModalBtn.addEventListener('click', () => gameModal.classList.remove('active'));
 gameModal.addEventListener('click', (e) => { if (e.target === gameModal) gameModal.classList.remove('active'); });
 
+// Idioma y Filtros
 langButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         langButtons.forEach(b => b.classList.remove('active'));

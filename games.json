@@ -4,7 +4,7 @@
         "title": "Call of Duty: Black Ops — Zombies",
         "category": "action",
         "creator": "vel.gg",
-        "image": "assets/bo1-zombies.jpg",
+        "image": "assets/gameImg/bo1-zombies.jpg",
         "es": { "description": "El clásico modo zombies adaptado para navegador con rendimiento fluido en WebGL.", "genre": "Acción" },
         "en": { "description": "The classic zombies mode adapted for browsers with smooth WebGL performance.", "genre": "Action" },
         "url": "https://vel.gg/bo1z"
@@ -14,7 +14,7 @@
         "title": "Call of Duty: Modern Warfare 2",
         "category": "action",
         "creator": "ovz-game-production",
-        "image": "assets/modern-warfare-2.jpg",
+        "image": "assets/gameImg/modern-warfare-2.jpg",
         "es": { "description": "Explorador de mapas y motor táctico 3D basado en MW2 original.", "genre": "Acción" },
         "en": { "description": "Map explorer and 3D tactical engine based on the original MW2.", "genre": "Action" },
         "url": "https://ovz-game-production.up.railway.app"
@@ -24,7 +24,7 @@
         "title": "Skate 3",
         "category": "sports",
         "creator": "aaddpp.lol",
-        "image": "assets/skate-3.jpg",
+        "image": "assets/gameImg/skate-3.jpg",
         "es": { "description": "Física de patineta y entornos urbanos llevados al entorno web.", "genre": "Deportes" },
         "en": { "description": "Skateboard physics and urban environments brought to the web.", "genre": "Sports" },
         "url": "https://skate.aaddpp.lol"
@@ -34,7 +34,7 @@
         "title": "Counter-Strike: Surf",
         "category": "multiplayer",
         "creator": "surfd.net",
-        "image": "assets/cs-surf.jpg",
+        "image": "assets/gameImg/cs-surf.jpg",
         "es": { "description": "Los icónicos mapas de deslizamiento (surf) multijugador de Counter-Strike.", "genre": "Multijugador" },
         "en": { "description": "The iconic multiplayer surfing maps from Counter-Strike.", "genre": "Multiplayer" },
         "url": "https://surfd.net"
@@ -44,7 +44,7 @@
         "title": "Pro Evolution Soccer 6",
         "category": "sports",
         "creator": "optijuegos.net",
-        "image": "assets/pes-6.jpg",
+        "image": "assets/gameImg/pes-6.jpg",
         "es": { "description": "El legendario simulador de fútbol de PSP corriendo íntegramente en WebAssembly.", "genre": "Deportes" },
         "en": { "description": "The legendary PSP football simulator running entirely in WebAssembly.", "genre": "Sports" },
         "url": "https://pes6.optijuegos.net"
@@ -54,7 +54,7 @@
         "title": "The Simpsons: Hit & Run",
         "category": "retro",
         "creator": "cjoseph.workers.dev",
-        "image": "assets/simpsons-hit-and-run.jpg",
+        "image": "assets/gameImg/simpsons-hit-and-run.png",
         "es": { "description": "El clásico juego de mundo abierto de Springfield compilado a la web.", "genre": "Retro" },
         "en": { "description": "The classic open-world Springfield game compiled for the web.", "genre": "Retro" },
         "url": "https://shar-wasm.cjoseph.workers.dev/?skipmovie"
@@ -64,7 +64,7 @@
         "title": "Quake",
         "category": "retro",
         "creator": "Pieter",
-        "image": "assets/quake-1.jpg",
+        "image": "assets/gameImg/quake-1.jpg",
         "es": { "description": "El pionero de los mundos 3D poligonales en formato web.", "genre": "Retro" },
         "en": { "description": "The pioneer of polygonal 3D worlds in web format.", "genre": "Retro" },
         "url": "https://q1.pieter.com"
@@ -74,7 +74,7 @@
         "title": "Quake II",
         "category": "retro",
         "creator": "Pieter",
-        "image": "assets/quake-2.jpg",
+        "image": "assets/gameImg/quake-2.jpg",
         "es": { "description": "Gráficos avanzados de la época y acción frenética contra los Strogg.", "genre": "Retro" },
         "en": { "description": "Advanced graphics of the era and frantic action against the Strogg.", "genre": "Retro" },
         "url": "https://q2.pieter.com"
@@ -84,7 +84,7 @@
         "title": "Quake III Arena",
         "category": "multiplayer",
         "creator": "Pieter / QuakeJS",
-        "image": "assets/quake-3.jpg",
+        "image": "assets/gameImg/quake-3.jpg",
         "es": { "description": "Combates multijugador de alta velocidad en arenas cerradas.", "genre": "Multijugador" },
         "en": { "description": "High-speed multiplayer combat in closed arenas.", "genre": "Multiplayer" },
         "url": "https://q3.pieter.com"
@@ -94,7 +94,7 @@
         "title": "Return to Castle Wolfenstein",
         "category": "retro",
         "creator": "Pieter",
-        "image": "assets/rtcw.jpg",
+        "image": "assets/gameImg/rtcw.jpg",
         "es": { "description": "Infiltración y enfrentamientos oscuros en el castillo Wolfenstein.", "genre": "Retro" },
         "en": { "description": "Infiltration and dark encounters in Wolfenstein Castle.", "genre": "Retro" },
         "url": "https://rtcw.pieter.com"
@@ -104,7 +104,7 @@
         "title": "Unreal Tournament",
         "category": "multiplayer",
         "creator": "Pieter",
-        "image": "assets/unreal-tournament.jpg",
+        "image": "assets/gameImg/unreal-tournament.png",
         "es": { "description": "Acción multijugador legendaria con armas futuristas y modos de juego clásicos.", "genre": "Multijugador" },
         "en": { "description": "Legendary multiplayer action with futuristic weapons and classic modes.", "genre": "Multiplayer" },
         "url": "https://ut.pieter.com"
@@ -114,7 +114,7 @@
         "title": "Half-Life",
         "category": "action",
         "creator": "pixelsuft",
-        "image": "assets/half-life.jpg",
+        "image": "assets/gameImg/half-life.png",
         "es": { "description": "El incidente de Black Mesa directo en tu navegador con motor Xash3D.", "genre": "Acción" },
         "en": { "description": "The Black Mesa incident straight to your browser using the Xash3D engine.", "genre": "Action" },
         "url": "https://pixelsuft.github.io/hl/"
@@ -124,7 +124,7 @@
         "title": "Half-Life / Counter-Strike 1.6",
         "category": "action",
         "creator": "x8bitrain",
-        "image": "assets/half-life-cs.jpg",
+        "image": "assets/gameImg/half-life-cs.png",
         "es": { "description": "Plataforma multi-motor webXash para clásicos de Valve.", "genre": "Acción" },
         "en": { "description": "webXash multi-engine platform for Valve classics.", "genre": "Action" },
         "url": "https://x8bitrain.github.io/webXash/"
@@ -134,9 +134,59 @@
         "title": "Diablo",
         "category": "retro",
         "creator": "johnimril",
-        "image": "assets/diablo.jpg",
+        "image": "assets/gameImg/diablo.jpg",
         "es": { "description": "Mazmorras oscuras y rol de acción clásico adaptado al navegador.", "genre": "Retro" },
         "en": { "description": "Dark dungeons and classic action RPG adapted for the browser.", "genre": "Retro" },
         "url": "https://johnimril.github.io/diablo_web/"
+    },
+    {
+        "id": "poke-survivor",
+        "title": "Poke Survivor",
+        "category": "action",
+        "creator": "pokesurvivor.com",
+        "image": "assets/gameImg/pokesurvivor.webp",
+        "es": { "description": "Sobrevive a hordas de enemigos en este emocionante juego de acción estilo survivor ambientado en Pokémon.", "genre": "Acción" },
+        "en": { "description": "Survive hordes of enemies in this thrilling Pokémon-themed survivor action game.", "genre": "Action" },
+        "url": "https://pokesurvivor.com/"
+    },
+    {
+        "id": "dragon-ball-tft",
+        "title": "Dragon Ball TFT",
+        "category": "strategy",
+        "creator": "dragonballtft.online",
+        "image": "assets/gameImg/dragon-ball-tft.webp",
+        "es": { "description": "Juego de estrategia táctica y autochess basado en el universo de Dragon Ball.", "genre": "Estrategia" },
+        "en": { "description": "Tactical strategy and auto-chess game based on the Dragon Ball universe.", "genre": "Strategy" },
+        "url": "https://dragonballtft.online/"
+    },
+    {
+        "id": "poke-path",
+        "title": "Pokepath",
+        "category": "retro",
+        "creator": "khydra98",
+        "image": "assets/gameImg/poke-path.jpg",
+        "es": { "description": "Aventura de rol inspirada en el mundo Pokémon creada por la comunidad de Itch.io.", "genre": "Retro" },
+        "en": { "description": "RPG adventure inspired by the Pokémon world created by the Itch.io community.", "genre": "Retro" },
+        "url": "https://khydra98.itch.io/pokepath"
+    },
+    {
+        "id": "kanto-tactics",
+        "title": "Kanto Tactics",
+        "category": "strategy",
+        "creator": "einoow.com",
+        "image": "assets/gameImg/kanto-tactics.webp",
+        "es": { "description": "Batallas estratégicas por turnos ambientadas en la mítica región de Kanto.", "genre": "Estrategia" },
+        "en": { "description": "Strategic turn-based battles set in the mythical Kanto region.", "genre": "Strategy" },
+        "url": "https://einoow.com/kanto-tactics"
+    },
+    {
+        "id": "pokemon-royale",
+        "title": "Pokémon Royale",
+        "category": "multiplayer",
+        "creator": "pokemonroyale.com",
+        "image": "assets/gameImg/pokemon-royale.jpg",
+        "es": { "description": "Experiencia multijugador competitiva inspirada en combates Pokémon a gran escala.", "genre": "Multijugador" },
+        "en": { "description": "Competitive multiplayer experience inspired by large-scale Pokémon battles.", "genre": "Multiplayer" },
+        "url": "https://pokemonroyale.com/"
     }
 ]
