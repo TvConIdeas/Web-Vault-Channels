@@ -1,119 +1,222 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- * ------ Metadatos base ------ -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Web Vault Channels | TvConIdeas</title>
-    
-    <!-- ! <=====( ESTILOS E ICONOS )=====> -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ! ------ METADATOS OPEN GRAPH / TWITTER ------ -->
+    <meta property="og:title" content="Web Vault Channels | TvConIdeas">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tvconideas.github.io/Web-Vault-Channels/">
+    <meta property="og:image" content="assets/og-preview.jpg">
+    <meta property="og:image:alt" content="Menú estilo Nintendo Wii de Web Vault Channels">
+    <meta property="og:description" content="Lanzador web interactivo inspirado en el menú de Nintendo Wii. Juega puertos retro, WebAssembly y WebGL directo en tu navegador.">
+    <meta property="og:site_name" content="Web Vault Channels">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Web Vault Channels | TvConIdeas">
+    <meta name="twitter:description" content="Lanzador web interactivo inspirado en el menú de Nintendo Wii.">
+    <meta name="twitter:image" content="assets/og-preview.jpg">
+
+    <!-- ? ------ Ícono, fuentes Wii e iconos ------ -->
     <link rel="shortcut icon" href="assets/IconPage.png" type="image/x-icon">
-    
-    <!-- Tipografías similares al estilo Nintendo Wii -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&family=Orbitron:wght@600;700&family=VT323&display=swap" rel="stylesheet">
+
+    <!-- * ------ Hojas de estilo modulares ------ -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/channels.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
-    <!-- ! <=====( MÚSICA DE FONDO )=====> -->
-    <audio id="bgMusic" src="assets/Background-theme.mp3" loop></audio>
+    <!-- ! ------ MÚSICA DE FONDO ------ -->
+    <audio id="bgMusic" src="assets/Background-theme.mp3" loop preload="auto"></audio>
 
-    <!-- ! <=====( BARRA SUPERIOR WII )=====> -->
-    <header class="wii-top-bar">
+    <!-- ! ------ BARRA SUPERIOR WII ------ -->
+    <header class="wii-top-bar" id="wiiTopBar">
         <div class="wii-top-left">
-            <span class="wii-clock" id="wiiClock">00:00</span>
-            
-            <!-- Buscador expandible en móviles -->
+            <div class="wii-clock-box" aria-live="polite">
+                <span class="wii-clock" id="wiiClock">00:00</span>
+                <span class="wii-date" id="wiiDate"></span>
+            </div>
+
+            <!-- ? ------ Buscador expandible en móviles ------ -->
             <div class="wii-search-box" id="searchBox">
-                <button class="wii-icon-trigger" id="searchToggleBtn" title="Buscar">
+                <button type="button" class="wii-icon-trigger" id="searchToggleBtn" aria-label="Buscar canal">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <input type="text" id="searchInput" placeholder="Buscar canal...">
+                <i class="fa-solid fa-magnifying-glass wii-search-desktop-icon" aria-hidden="true"></i>
+                <input type="text" id="searchInput" placeholder="Buscar canal..." autocomplete="off">
+                <button type="button" class="wii-clear-btn" id="clearSearchBtn" title="Limpiar búsqueda" hidden>×</button>
             </div>
-            
-            <!-- Selector de género expandible en móviles -->
+
+            <!-- ? ------ Selector de género expandible en móviles ------ -->
             <div class="wii-dropdown-box" id="dropdownBox">
-                <button class="wii-icon-trigger" id="genreToggleBtn" title="Género">
+                <button type="button" class="wii-icon-trigger" id="genreToggleBtn" aria-label="Filtrar por género">
                     <i class="fa-solid fa-filter"></i>
                 </button>
-                <select id="genreSelect">
+                <select id="genreSelect" aria-label="Género">
                     <option value="all" id="opt-all">Todos los géneros</option>
                     <option value="action" id="opt-action">Acción</option>
                     <option value="sports" id="opt-sports">Deportes</option>
                     <option value="retro" id="opt-retro">Retro</option>
                     <option value="multiplayer" id="opt-multiplayer">Multijugador</option>
+                    <option value="strategy" id="opt-strategy">Estrategia</option>
                 </select>
             </div>
+            <!-- ? ------ Selector de orden (Aleatorio, Populares, A-Z, Z-A) ------ -->
+            <div class="wii-dropdown-box" id="sortBox">
+                <button type="button" class="wii-icon-trigger" id="sortToggleBtn" aria-label="Ordenar canales">
+                    <i class="fa-solid fa-arrow-down-a-z"></i>
+                </button>
+                <select id="sortSelect" aria-label="Ordenar por">
+                    <option value="random" id="sort-random">Orden: Aleatorio</option>
+                    <option value="popular" id="sort-popular">Más populares</option>
+                    <option value="az" id="sort-az">Alfabético (A - Z)</option>
+                    <option value="za" id="sort-za">Alfabético (Z - A)</option>
+                </select>
+            </div>
+            <button type="button" class="wii-theme-btn" id="shuffleBtn" title="Mezclar orden aleatorio" aria-label="Mezclar orden aleatorio">
+                <i class="fa-solid fa-shuffle"></i>
+            </button>
         </div>
 
-        <!-- Título central -->
+        <!-- * ------ Título central estilo menú Wii ------ -->
         <div class="wii-system-title">Web Vault Channels</div>
 
         <div class="wii-top-right">
-            <!-- Botón de Modo Oscuro -->
-            <button class="wii-theme-btn" id="toggleThemeBtn" title="Cambiar modo oscuro/claro">
+            <!-- ? ------ Botón Modo Claro / Oscuro ------ -->
+            <button type="button" class="wii-theme-btn" id="toggleThemeBtn" title="Cambiar modo oscuro/claro" aria-label="Cambiar modo oscuro/claro">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
 
-            <!-- Control de Volumen Desplegable por Clic -->
+            <!-- ? ------ Control de Volumen Desplegable ------ -->
             <div class="wii-volume-container">
-                <button class="wii-audio-btn" id="toggleAudioBtn" title="Música On/Off">
+                <button type="button" class="wii-audio-btn" id="toggleAudioBtn" title="Música On/Off" aria-label="Música On/Off">
                     <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
                 </button>
-                <div class="wii-volume-popover">
+                <div class="wii-volume-popover" id="volumePopover">
                     <i class="fa-solid fa-volume-low"></i>
-                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5">
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" aria-label="Volumen">
                     <i class="fa-solid fa-volume-high"></i>
                 </div>
             </div>
 
-            <!-- Selector de Idioma -->
-            <div class="lang-selector">
-                <button class="lang-btn active" data-lang="es">ES</button>
-                <span>/</span>
-                <button class="lang-btn" data-lang="en">EN</button>
+            <!-- ? ------ Selector de Idioma con Banderitas (ARG / ENG) ------ -->
+            <div class="lang-selector" role="group" aria-label="Idioma">
+                <button type="button" class="lang-btn active" data-lang="es" title="Español (Argentina)">
+                    <svg class="lang-flag" viewBox="0 0 24 16" width="16" height="11" aria-hidden="true">
+                        <rect width="24" height="5.33" y="0" fill="#74ACDF"/>
+                        <rect width="24" height="5.34" y="5.33" fill="#FFFFFF"/>
+                        <rect width="24" height="5.33" y="10.67" fill="#74ACDF"/>
+                        <circle cx="12" cy="8" r="2.1" fill="#F6B40E" stroke="#85340A" stroke-width="0.35"/>
+                    </svg>
+                    <span>ES</span>
+                </button>
+                <span class="lang-sep">/</span>
+                <button type="button" class="lang-btn" data-lang="en" title="English">
+                    <svg class="lang-flag" viewBox="0 0 24 16" width="16" height="11" aria-hidden="true">
+                        <rect width="24" height="16" fill="#FFFFFF"/>
+                        <rect x="10" width="4" height="16" fill="#CE1124"/>
+                        <rect y="6" width="24" height="4" fill="#CE1124"/>
+                    </svg>
+                    <span>EN</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- ! <=====( CONTENEDOR PRINCIPAL CON GESTOS Y TRANSICIÓN )=====> -->
+    <!-- ! ------ CONTENEDOR PRINCIPAL DE CANALES ------ -->
     <main class="wii-menu-container" id="menuContainer">
-        <button class="wii-nav-btn prev" id="prevPageBtn" title="Página anterior">
+        <button type="button" class="wii-nav-btn prev" id="prevPageBtn" title="Página anterior" aria-label="Página anterior">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
 
         <div class="wii-grid-wrapper">
-            <div class="wii-grid" id="gamesGrid">
-                <!-- Bloques inyectados por JS -->
-            </div>
+            <div class="wii-grid" id="gamesGrid" aria-live="polite"></div>
         </div>
 
-        <button class="wii-nav-btn next" id="nextPageBtn" title="Página siguiente">
+        <button type="button" class="wii-nav-btn next" id="nextPageBtn" title="Página siguiente" aria-label="Página siguiente">
             <i class="fa-solid fa-chevron-right"></i>
         </button>
     </main>
 
-    <!-- ! <=====( BARRA INFERIOR )=====> -->
+    <!-- ! ------ BARRA INFERIOR WII ------ -->
     <footer class="wii-bottom-bar">
-        <div class="wii-bottom-spacer"></div>
+        <div class="wii-bottom-left">
+            <button type="button" class="wii-pill-btn" id="resetFiltersBtn" hidden>Limpiar filtros</button>
+            <span class="wii-counter" id="channelsCounter">0 canales</span>
+        </div>
 
         <div class="wii-pagination-dots" id="paginationDots"></div>
 
         <div class="wii-credits">
-            By TvConIdeas
+            <a href="https://tvconideas.github.io/MyPage/" target="_blank" rel="noopener noreferrer" class="wii-creator-link" title="Ver portfolio de TvConIdeas">
+                <span class="creator-by">By</span> <span class="creator-name">TvConIdeas</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
         </div>
     </footer>
 
-    <!-- ! <=====( VENTANA MODAL )=====> -->
-    <div class="modal-overlay" id="gameModal" role="dialog">
+    <!-- ! ------ MODAL DE DETALLE DEL CANAL ------ -->
+    <div class="modal-overlay" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalGameTitle">
         <div class="wii-modal-card" id="modalCardZoom">
-            <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            <button type="button" class="close-modal-btn" id="closeModalBtn" aria-label="Cerrar">×</button>
             <div class="modal-content-grid" id="modalBody"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ! ------ MODAL PANTALLA DE TV (~90% PANTALLA) PARA JUGAR ------ -->
+    <div class="tv-play-overlay" id="tvPlayModal" role="dialog" aria-modal="true" aria-labelledby="tvPlayTitle">
+        <div class="wii-tv-frame">
+            <div class="wii-tv-top-bezel">
+                <div class="wii-tv-channel-badge">
+                    <span class="tv-led-dot"></span>
+                    <span class="tv-ch-label" id="tvChCode">CH-01</span>
+                    <h2 id="tvPlayTitle">Canal</h2>
+                </div>
+
+                <div class="wii-tv-actions">
+                    <button type="button" class="tv-action-btn" id="tvReloadBtn" title="Recargar canal">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <button type="button" class="tv-action-btn" id="tvFullscreenBtn" title="Pantalla completa">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="tv-action-btn" id="tvExternalBtn" title="Abrir en pestaña nueva">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button type="button" class="tv-action-btn tv-close-btn" id="tvCloseBtn" title="Salir de la TV">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="wii-tv-screen-wrap" id="tvScreenWrap">
+                <div class="wii-tv-scanlines" aria-hidden="true"></div>
+                <iframe id="tvGameIframe" src="about:blank" title="Pantalla de juego" allow="fullscreen; gamepad"></iframe>
+            </div>
+
+            <div class="wii-tv-bottom-bar">
+                <span class="tv-hint-text" id="tvHintText">Si el juego no carga dentro de la TV por seguridad del sitio, usá "Abrir externa".</span>
+                <button type="button" class="wii-pill-btn wii-pill-accent" id="tvBackMenuBtn">Wii Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- * ------ Scripts modulares ------ -->
+    <script src="js/config.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/channels.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

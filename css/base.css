@@ -1,0 +1,114 @@
+/* ! ------ VARIABLES WII MENU (CLARO Y OSCURO) ------ */
+:root {
+    --wii-bg-gradient: radial-gradient(circle at 50% 35%, #ffffff 0%, #e4e8ec 62%, #c3cad2 100%);
+    --wii-scanline-color: rgba(0, 0, 0, 0.025);
+    --wii-top-bg: rgba(255, 255, 255, 0.92);
+    --wii-bottom-bg: rgba(248, 250, 252, 0.94);
+    --wii-channel-bg: #ffffff;
+    --wii-channel-title-bg: linear-gradient(180deg, #ffffff 0%, #f1f4f7 100%);
+    --wii-green-glow: #4bb36b;
+    --wii-green-dark: #2e8449;
+    --wii-green-shadow: rgba(75, 179, 107, 0.42);
+    --wii-sky-accent: #38bdf8;
+    --wii-sky-border: #7dd3fc;
+    --wii-text-dark: #282c34;
+    --wii-text-muted: #5c6573;
+    --wii-border: #aeb6c0;
+    --wii-input-bg: #eef2f6;
+    --wii-input-border: #b8c0ca;
+    --wii-nav-bg: linear-gradient(180deg, #ffffff 0%, #dde3ea 100%);
+    --wii-nav-border: #9aa4b0;
+    --wii-nav-color: #3a414a;
+    --wii-modal-bg: #ffffff;
+    --wii-modal-desc: #f2f5f8;
+    --wii-modal-border: #a6b0bc;
+    --wii-tv-shell: linear-gradient(155deg, #f3f5f8 0%, #cfd6de 55%, #aeb7c2 100%);
+    --wii-tv-bezel: #1b1f24;
+
+    --font-title: 'Fredoka', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    --font-clock: 'Orbitron', sans-serif;
+    --font-retro: 'VT323', monospace;
+
+    --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-wii-pop: cubic-bezier(0.175, 0.885, 0.32, 1.25);
+}
+
+/* * ------ Modo Oscuro Wii ------ */
+body.dark-mode {
+    --wii-bg-gradient: radial-gradient(circle at 50% 35%, #242933 0%, #15181e 65%, #0c0e12 100%);
+    --wii-scanline-color: rgba(255, 255, 255, 0.02);
+    --wii-top-bg: rgba(22, 26, 33, 0.94);
+    --wii-bottom-bg: rgba(20, 24, 30, 0.95);
+    --wii-channel-bg: #1e232c;
+    --wii-channel-title-bg: linear-gradient(180deg, #232934 0%, #181c24 100%);
+    --wii-green-glow: #56d07c;
+    --wii-green-dark: #389e58;
+    --wii-green-shadow: rgba(86, 208, 124, 0.34);
+    --wii-sky-accent: #38bdf8;
+    --wii-sky-border: rgba(56, 189, 248, 0.55);
+    --wii-text-dark: #f1f5f9;
+    --wii-text-muted: #9aa5b4;
+    --wii-border: #3b4352;
+    --wii-input-bg: #2a303c;
+    --wii-input-border: #465063;
+    --wii-nav-bg: linear-gradient(180deg, #2d3442 0%, #1c2029 100%);
+    --wii-nav-border: #4a5468;
+    --wii-nav-color: #e2e8f0;
+    --wii-modal-bg: #1d222b;
+    --wii-modal-desc: #262c38;
+    --wii-modal-border: #475266;
+    --wii-tv-shell: linear-gradient(155deg, #2d333f 0%, #1c2028 55%, #12151b 100%);
+    --wii-tv-bezel: #0b0d10;
+}
+
+/* ! ------ RESET Y BASE ------ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.38s var(--ease-fluid), color 0.38s var(--ease-fluid), border-color 0.38s var(--ease-fluid), box-shadow 0.38s var(--ease-fluid);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--wii-bg-gradient);
+    background-attachment: fixed;
+    color: var(--wii-text-dark);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ? ------ Líneas sutiles estilo pantalla Wii ------ */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        var(--wii-scanline-color) 3px,
+        var(--wii-scanline-color) 4px
+    );
+}
+
+input, select, button, a {
+    font-family: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--wii-sky-accent);
+    outline-offset: 2px;
+}

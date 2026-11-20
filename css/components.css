@@ -1,0 +1,561 @@
+/* ! ------ CONTROLES DE BARRA SUPERIOR E INFERIOR ------ */
+.wii-search-box,
+.wii-dropdown-box {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--wii-input-bg);
+    border: 2px solid var(--wii-input-border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+}
+
+.wii-icon-trigger {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--wii-text-dark);
+    font-size: 0.92rem;
+    cursor: pointer;
+}
+
+.wii-search-desktop-icon {
+    font-size: 0.85rem;
+    color: var(--wii-text-muted);
+}
+
+.wii-search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--wii-text-dark);
+    width: 145px;
+}
+
+.wii-clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--wii-text-muted);
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0.15rem;
+}
+
+.wii-clear-btn:hover {
+    color: var(--wii-green-glow);
+}
+
+.wii-dropdown-box select {
+    background: transparent;
+    border: none;
+    color: var(--wii-text-dark);
+    font-size: 0.84rem;
+    font-weight: 800;
+    outline: none;
+    cursor: pointer;
+}
+
+.wii-theme-btn,
+.wii-audio-btn {
+    background: var(--wii-input-bg);
+    border: 2px solid var(--wii-input-border);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--wii-text-dark);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.25s var(--ease-wii-pop), background-color 0.25s ease, color 0.25s ease;
+}
+
+.wii-theme-btn:hover,
+.wii-audio-btn:hover {
+    transform: translate3d(0, -2px, 0);
+    background: var(--wii-green-glow);
+    color: #ffffff;
+    border-color: var(--wii-green-dark);
+}
+
+.wii-volume-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.wii-volume-popover {
+    position: absolute;
+    top: 125%;
+    right: 0;
+    background: var(--wii-modal-bg);
+    border: 2px solid var(--wii-border);
+    border-radius: 20px;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, -8px, 0);
+    transition: opacity 0.22s ease, transform 0.25s var(--ease-fluid);
+    z-index: 120;
+}
+
+.wii-volume-container.active .wii-volume-popover {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+}
+
+.wii-volume-popover i {
+    font-size: 0.8rem;
+    color: var(--wii-text-muted);
+}
+
+.wii-volume-popover input[type="range"] {
+    accent-color: var(--wii-green-glow);
+    cursor: pointer;
+    width: 88px;
+}
+
+/* ? ------ Selector de idioma con banderitas ------ */
+.lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--wii-input-bg);
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    border: 2px solid var(--wii-input-border);
+}
+
+.lang-sep {
+    color: var(--wii-text-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    background: transparent;
+    border: none;
+    color: var(--wii-text-muted);
+    font-family: var(--font-title);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.12rem 0.28rem;
+    border-radius: 999px;
+    opacity: 0.68;
+    transform: scale(1);
+    transition: opacity 0.25s ease, color 0.25s ease, transform 0.25s var(--ease-wii-pop);
+}
+
+.lang-btn:hover {
+    opacity: 1;
+    color: var(--wii-text-dark);
+}
+
+.lang-btn.active {
+    opacity: 1;
+    color: var(--wii-green-glow);
+    transform: scale(1.04);
+}
+
+.lang-flag {
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.22);
+    flex-shrink: 0;
+}
+
+.wii-pill-btn {
+    background: var(--wii-input-bg);
+    border: 2px solid var(--wii-input-border);
+    color: var(--wii-text-dark);
+    font-family: var(--font-title);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.wii-pill-btn:hover {
+    border-color: var(--wii-green-glow);
+    color: var(--wii-green-glow);
+}
+
+.wii-pill-accent {
+    background: var(--wii-green-glow);
+    border-color: var(--wii-green-dark);
+    color: #ffffff;
+}
+
+.wii-pill-accent:hover {
+    background: var(--wii-green-dark);
+    color: #ffffff;
+}
+
+/* ! ------ MODAL DE DETALLE DE CANAL ------ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s var(--ease-fluid);
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wii-modal-card {
+    background: var(--wii-modal-bg);
+    border: 4px solid var(--wii-modal-border);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 520px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.42);
+    transform: translate3d(0, 14px, 0) scale(0.96);
+    transition: transform 0.32s var(--ease-wii-pop);
+}
+
+.modal-overlay.active .wii-modal-card {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: var(--wii-input-bg);
+    border: 2px solid var(--wii-input-border);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--wii-text-dark);
+    font-size: 1.35rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal-btn:hover {
+    background: var(--wii-green-glow);
+    border-color: var(--wii-green-dark);
+    color: #ffffff;
+}
+
+.modal-content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    text-align: center;
+}
+
+.modal-banner-img {
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 2.5px solid var(--wii-border);
+}
+
+.modal-content-grid h2 {
+    font-family: var(--font-title);
+    font-size: 1.55rem;
+    color: var(--wii-text-dark);
+}
+
+.modal-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.35rem;
+}
+
+.start-channel-btn,
+.secondary-channel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.75rem 1.55rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.25s var(--ease-wii-pop), box-shadow 0.25s ease;
+}
+
+.start-channel-btn {
+    background: var(--wii-green-glow);
+    color: #ffffff;
+    box-shadow: 0 6px 18px var(--wii-green-shadow);
+}
+
+.start-channel-btn:hover {
+    transform: translate3d(0, -2px, 0);
+    background: var(--wii-green-dark);
+}
+
+.secondary-channel-btn {
+    background: var(--wii-input-bg);
+    color: var(--wii-text-dark);
+    border: 2px solid var(--wii-input-border);
+}
+
+.secondary-channel-btn:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: var(--wii-sky-accent);
+}
+
+/* ! ------ MODAL PANTALLA DE TV (~90% DE PANTALLA) ------ */
+.tv-play-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 12, 0.84);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-fluid);
+    z-index: 1200;
+    padding: 1rem;
+}
+
+.tv-play-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wii-tv-frame {
+    width: 90vw;
+    height: 90dvh;
+    max-width: 1500px;
+    max-height: 920px;
+    background: var(--wii-tv-shell);
+    border: 4px solid var(--wii-sky-border);
+    border-radius: 26px;
+    padding: 0.85rem 1rem 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.72),
+        0 0 0 3px rgba(56, 189, 248, 0.16);
+    transform: scale(0.95);
+    transition: transform 0.32s var(--ease-wii-pop);
+}
+
+.tv-play-overlay.active .wii-tv-frame {
+    transform: scale(1);
+}
+
+.wii-tv-top-bezel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--wii-top-bg);
+    border-radius: 16px;
+    border: 2px solid var(--wii-border);
+}
+
+.wii-tv-channel-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.tv-led-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+    flex-shrink: 0;
+}
+
+.tv-ch-label {
+    font-family: var(--font-retro);
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    color: var(--wii-green-glow);
+    flex-shrink: 0;
+}
+
+.wii-tv-channel-badge h2 {
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    color: var(--wii-text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wii-tv-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+}
+
+.tv-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--wii-input-border);
+    background: var(--wii-input-bg);
+    color: var(--wii-text-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.tv-action-btn:hover {
+    background: var(--wii-sky-accent);
+    border-color: var(--wii-sky-accent);
+    color: #0b1118;
+}
+
+.tv-close-btn:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #ffffff;
+}
+
+.wii-tv-screen-wrap {
+    flex: 1;
+    position: relative;
+    background: var(--wii-tv-bezel);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 3px solid var(--wii-border);
+}
+
+.wii-tv-scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.025) 3px,
+        rgba(255, 255, 255, 0.025) 4px
+    );
+}
+
+.wii-tv-screen-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #090b0e;
+}
+
+.wii-tv-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0.65rem;
+}
+
+.tv-hint-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--wii-text-muted);
+}
+
+/* ? ------ Crédito interactivo en el footer ------ */
+.wii-creator-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    text-decoration: none;
+    color: var(--wii-text-dark);
+    padding: 0.24rem 0.65rem;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    transform: translate3d(0, 0, 0);
+    transition:
+        transform 0.3s var(--ease-wii-pop),
+        background-color 0.28s var(--ease-fluid),
+        border-color 0.28s var(--ease-fluid),
+        color 0.28s var(--ease-fluid),
+        box-shadow 0.28s var(--ease-fluid);
+}
+
+.wii-creator-link .creator-by {
+    color: var(--wii-text-muted);
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.wii-creator-link .creator-name {
+    color: var(--wii-green-glow);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.wii-creator-link i {
+    font-size: 0.68rem;
+    color: var(--wii-text-muted);
+    transition: transform 0.3s var(--ease-wii-pop), color 0.28s ease;
+}
+
+.wii-creator-link:hover,
+.wii-creator-link:focus-visible {
+    transform: translate3d(0, -2px, 0);
+    background: var(--wii-input-bg);
+    border-color: var(--wii-green-glow);
+    box-shadow: 0 6px 16px var(--wii-green-shadow);
+}
+
+.wii-creator-link:hover .creator-name {
+    color: var(--wii-text-dark);
+}
+
+.wii-creator-link:hover i {
+    color: var(--wii-green-glow);
+    transform: translate3d(2px, -2px, 0);
+}

@@ -1,0 +1,191 @@
+/* ! ------ GRILLA Y CANALES WII ------ */
+.wii-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+    height: 515px;
+    transform: translate3d(0, 0, 0);
+}
+
+/* * ------ Canal individual con brillo superior tipo Wii ------ */
+.wii-channel {
+    background-color: var(--wii-channel-bg);
+    border: 3.5px solid var(--wii-border);
+    border-radius: 18px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.12),
+        inset 0 2px 0 rgba(255, 255, 255, 0.65);
+    overflow: hidden;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition:
+        transform 0.35s var(--ease-wii-pop),
+        border-color 0.28s var(--ease-fluid),
+        box-shadow 0.35s var(--ease-fluid);
+}
+
+/* ? ------ Brillo gloss superior estilo botón Wii ------ */
+.wii-channel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 36%;
+    border-radius: 0 0 50% 50% / 0 0 28% 28%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.wii-channel:hover,
+.wii-channel:focus-visible {
+    transform: translate3d(0, -7px, 0) scale(1.045);
+    border-color: var(--wii-green-glow);
+    box-shadow:
+        0 16px 30px var(--wii-green-shadow),
+        0 0 0 2px rgba(75, 179, 107, 0.22);
+    z-index: 6;
+}
+
+.wii-channel:active {
+    transform: translate3d(0, -2px, 0) scale(0.99);
+}
+
+.wii-channel-img-container {
+    width: 100%;
+    height: 72%;
+    overflow: hidden;
+    background: var(--wii-input-bg);
+    border-bottom: 2px solid var(--wii-border);
+    position: relative;
+}
+
+.wii-channel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.45s var(--ease-fluid);
+}
+
+.wii-channel:hover .wii-channel-img {
+    transform: scale(1.07);
+}
+
+.wii-channel-title-bar {
+    height: 28%;
+    background: var(--wii-channel-title-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.65rem;
+    text-align: center;
+}
+
+.wii-channel h3 {
+    font-family: var(--font-title);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--wii-text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+/* ! ------ BOTONES DE NAVEGACIÓN Y PUNTOS ------ */
+.wii-nav-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--wii-nav-bg);
+    border: 3.5px solid var(--wii-nav-border);
+    color: var(--wii-nav-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0 0.75rem;
+    z-index: 10;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 0.3s var(--ease-wii-pop), border-color 0.25s ease, color 0.25s ease;
+}
+
+.wii-nav-btn:hover:not(:disabled) {
+    transform: translate3d(0, 0, 0) scale(1.1);
+    border-color: var(--wii-sky-accent);
+    color: var(--wii-sky-accent);
+}
+
+.wii-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--wii-input-border);
+    cursor: pointer;
+    border: 1.5px solid var(--wii-border);
+    transform: scale(1);
+    transition: transform 0.25s var(--ease-wii-pop), background-color 0.25s ease;
+}
+
+.dot:hover {
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: var(--wii-green-glow);
+    border-color: var(--wii-green-dark);
+    transform: scale(1.22);
+}
+
+/* ! ------ TRANSICIONES DE PÁGINA FLUIDAS ------ */
+.slide-left {
+    animation: slideOutLeft 0.22s var(--ease-fluid) forwards;
+}
+
+.slide-right {
+    animation: slideOutRight 0.22s var(--ease-fluid) forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.28s var(--ease-fluid) forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.28s var(--ease-fluid) forwards;
+}
+
+@keyframes slideOutLeft {
+    from { transform: translate3d(0, 0, 0); opacity: 1; }
+    to { transform: translate3d(-48px, 0, 0); opacity: 0; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translate3d(0, 0, 0); opacity: 1; }
+    to { transform: translate3d(48px, 0, 0); opacity: 0; }
+}
+
+@keyframes slideInRight {
+    from { transform: translate3d(48px, 0, 0); opacity: 0; }
+    to { transform: translate3d(0, 0, 0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translate3d(-48px, 0, 0); opacity: 0; }
+    to { transform: translate3d(0, 0, 0); opacity: 1; }
+}
